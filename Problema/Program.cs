@@ -4,9 +4,9 @@ using System.Linq;
 
 namespace Problema
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             var input = "a{b,c}";
             var output = GetResult(input);
@@ -58,9 +58,7 @@ namespace Problema
                     outputItem = string.Empty;
                 }
                 else
-                {
                     outputItem += item;
-                }
             }
 
             output.Add(outputItem);

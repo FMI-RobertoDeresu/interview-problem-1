@@ -17,31 +17,6 @@ namespace Problema
             Console.ReadKey();
         }
 
-        private static IList<string> ParseBracketsInner(string input)
-        {
-            var output = new List<string>();
-            var openedBrackets = 0;
-            var outputItem = string.Empty;
-
-            foreach (var item in input)
-            {
-                openedBrackets += item == '{' ? 1 : item == '}'? - 1 : 0;
-                if (item == ',' && openedBrackets == 0)
-                {
-                    output.Add(outputItem);
-                    outputItem = string.Empty;
-                }
-                else
-                {
-                    outputItem += item;
-                }
-            }
-
-            output.Add(outputItem);
-
-            return output;
-        }
-
         private static IList<string> GetResult(string input)
         {
             var firstOpenedBracket = input.IndexOf('{');
@@ -64,6 +39,31 @@ namespace Problema
                 var outputItem = $"{prefix}{innerOutputItem}{suffix}";
                 output.Add(outputItem);
             }
+
+            return output;
+        }
+
+        private static IList<string> ParseBracketsInner(string input)
+        {
+            var output = new List<string>();
+            var openedBrackets = 0;
+            var outputItem = string.Empty;
+
+            foreach (var item in input)
+            {
+                openedBrackets += item == '{' ? 1 : item == '}' ? -1 : 0;
+                if (item == ',' && openedBrackets == 0)
+                {
+                    output.Add(outputItem);
+                    outputItem = string.Empty;
+                }
+                else
+                {
+                    outputItem += item;
+                }
+            }
+
+            output.Add(outputItem);
 
             return output;
         }
